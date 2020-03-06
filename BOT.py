@@ -5,7 +5,7 @@ import os
 import discord
 import math
 from discord.ext import commands
-
+import sqlite3
 
 def makefactor(x: int) -> list:
     """
@@ -34,6 +34,8 @@ loaded = datetime.datetime.now(
 )
 loaded = loaded.strftime('%Y年%m月%d日 %H:%M')
 
+conn = sqlite3.connect('discordbot.db')
+c = conn.cursor()
 
 # ここからコマンド
 
@@ -168,5 +170,6 @@ async def python(ctx, *, toexe='print("コマンドを入力してください")
         result = '```\n' + result + '\n```'
         await ctx.send(result)
 
+conn.close()
 # 接続
 bot.run(token)
