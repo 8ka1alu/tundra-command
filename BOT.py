@@ -1,11 +1,3 @@
-﻿"""
-ルールなど
-Python上級者の方で「ここはこうしたほうがいい」というものがありましたら追記・変更ご自由にどうぞ。
-
-
-"""
-
-# 設定　よほどのことがなければ変更しないこと
 import datetime
 import subprocess
 import numpy as np
@@ -56,8 +48,7 @@ async def help(ctx, tohelp='all'):  # tohelpにはヘルプを表示するコマ
         embed.add_field(name='??isprime', value='素数かどうか判定します。数値以外の入力には対応していません。', inline=False)
         embed.add_field(name='??calc', value='BOTに計算させることができます。Pythonの標準機能を使用するため、高度なことはできません。', inline=False)
         embed.add_field(name='??python', value='Pythonのコマンドを実行し、実行結果を返します。', inline=False)
-        embed.add_field(name='??report', value='バグやエラーが発生した、Botが正常に動作しないといった場合はこのコマンドで報告をお願いします。', inline=False)
-
+        
         # !!helpの説明は一番最後に
         embed.add_field(name='??help', value='この一覧を表示します。', inline=False)
         await ctx.send(embed=embed)
@@ -76,10 +67,7 @@ async def help(ctx, tohelp='all'):  # tohelpにはヘルプを表示するコマ
     if tohelp == 'python':
         embed = discord.Embed(title='使用方法 ： `??python <コマンド>', description='Pythonのコマンドを実行し、実行結果を返します。', color=0xffffff)
         await ctx.send(embed=embed)
-    if tohelp == 'report':
-        embed = discord.Embed(title='使用方法 ： `??report <文字列>`', description='バグやエラーが発生した、Botが正常に動作しないといった場合はこのコマンドで報告をお願いします。送信されたレポートは開発者の元に届きます。', color=0xffffff)
-        await ctx.send(embed=embed)
-
+    
 
 @bot.command()
 async def check(ctx):
@@ -180,24 +168,6 @@ async def python(ctx, *, toexe='print("コマンドを入力してください")
     else:
         result = '```\n' + result + '\n```'
         await ctx.send(result)
-
-
-# バグレポート
-@bot.command()
-async def report(ctx, *, repo):
-    repo = 'バグレポートが送信されました。\nFrom: ' + \
-        str(ctx.author) + '\n```\n' + repr(repo) + '\n```'
-
-    # Hello, World鯖に送信
-    guild = bot.get_guild(663309702230179841)
-    channel = guild.get_channel(663379323893317682)
-    await channel.send(repo)
-
-    # geek.hに送信
-    guild = bot.get_guild(659177467243659287)
-    channel = guild.get_channel(663311114477633566)
-    await channel.send(repo)
-
 
 # 接続
 bot.run(token)
