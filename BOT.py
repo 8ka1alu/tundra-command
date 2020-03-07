@@ -173,3 +173,4 @@ async def python(ctx, *, toexe='print("コマンドを入力してください")
 conn.close()
 # 接続
 bot.run(token)
+
