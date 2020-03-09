@@ -174,10 +174,10 @@ async def mp(ctx):
 
 
 @mp.command()
-async def create(ctx,member: discord.Member):
+async def create(ctx,what):
     conn = sqlite3.connect('discordbot.db')
     c = conn.cursor() 
-    c.execute(f"CREATE TABLE {member} ({member} TEXT, price INTEGER)")
+    c.execute(f"CREATE TABLE {what} ({what} TEXT, price INTEGER)")
     await ctx.send("登録しました。")
     conn.commit()
     conn.close()
