@@ -35,7 +35,6 @@ loaded = datetime.datetime.now(
 loaded = loaded.strftime('%Y年%m月%d日 %H:%M')
 
 conn = sqlite3.connect('discordbot.db')
-c = conn.cursor()
 
 # ここからコマンド
 
@@ -178,6 +177,7 @@ async def mp(ctx):
 
 @mp.command()
 async def create(ctx,member: discord.Member):
+    c = conn.cursor() 
     c.execute(f"CREATE TABLE {member} ({member} TEXT, price INTEGER)")
     await ctx.send("登録しました。")
 
