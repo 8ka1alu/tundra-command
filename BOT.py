@@ -180,8 +180,8 @@ async def create(ctx,member: discord.Member):
     c.execute(f"CREATE TABLE {member} ({member} TEXT, price INTEGER)")
     await ctx.send("登録しました。")
     conn.commit()
+    conn.close()
 
-conn.close()
 # 接続
 bot.run(token)
 
