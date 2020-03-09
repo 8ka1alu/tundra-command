@@ -169,6 +169,18 @@ async def python(ctx, *, toexe='print("コマンドを入力してください")
     else:
         result = '```\n' + result + '\n```'
         await ctx.send(result)
+          
+@bot.group()
+async def mp(ctx):
+    if ctx.invoked_subcommand is None:
+        await ctx.send('このコマンドにはサブコマンドが必要です。')
+
+
+@mp.command()
+async def create(ctx,member: discord.Member):
+    c.execute(f"CREATE TABLE {member} ({member} TEXT, price INTEGER)")
+    await ctx.send("登録しました。")
+
 
 conn.close()
 # 接続
