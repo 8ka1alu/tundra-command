@@ -174,7 +174,7 @@ async def mp(ctx):
 
 
 @mp.command()
-async def create(ctx,what):
+async def create(ctx,what:int):
     conn = sqlite3.connect('discordbot.db')
     c = conn.cursor() 
     c.execute(f"CREATE TABLE {what} ({what} TEXT, price INTEGER)")
